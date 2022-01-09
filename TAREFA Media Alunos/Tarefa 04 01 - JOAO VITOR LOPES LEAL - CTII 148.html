@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>TAREFA 04 01</title>
+        <style>
+            table
+            {
+                border-collapse: collapse;
+                border: 1px black solid;
+            }
+            td
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                text-align: center;
+                height: 50px;
+                width: 220px;
+            }
+            .positivo
+            {
+                background-image: url(POSITIVO.png);
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .negativo
+            {
+                background-image: url(NEGATIVO.png);
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .linhaVazia
+            {
+                height: 25px !important;
+            }
+        </style>
+    </head> 
+    <script>
+        var ii;
+        nota = new Array(40)
+
+        for (ii = 0; ii < 40; ii++)
+        {
+            nota[ii] = parseFloat(window.prompt("Digite a media final do "+(ii+1)+"° aluno: "));
+        }
+    </script>
+    
+    <body>
+        <table border="1">
+            <script>
+            var mediaGlobal, alunosAcimaDaMedia, percentualDeAprovados;
+            var somaTotal, soma, alunosAprovados;
+            soma = 0;
+            somaTotal = 0;
+            for (ii = 0; ii <40; ii++)
+            {
+                somaTotal = soma + nota[ii]
+                soma = somaTotal;
+            }
+            mediaGlobal = somaTotal/40;
+
+            alunosAcimaDaMedia =0;
+            for (ii = 0; ii <40; ii++)
+            {
+                if(nota[ii] > mediaGlobal)
+                {
+                    alunosAcimaDaMedia += 1
+                }
+            }
+            alunosAprovados =0;
+            for (ii = 0; ii <40; ii++)
+            {
+                if(nota[ii] >= 6)
+                {
+                    alunosAprovados += 1
+                }
+            }
+            percentualDeAprovados = alunosAprovados/40*100
+
+            document.write("<tr> <td class='linhaVazia' colspan='3' >Média global da turma:</td> <td class='linhaVazia'>"+mediaGlobal+"</td> </tr>");
+            document.write("<tr> <td class='linhaVazia' colspan='3'>Quantidade de aluno acima da média:</td> <td class='linhaVazia'>"+alunosAcimaDaMedia+"</td> </tr>");
+            document.write("<tr> <td class='linhaVazia' colspan='3'>Percentual de aprovacaos (média >= 6,0)</td> <td class='linhaVazia'>"+percentualDeAprovados+"</td> </tr>");
+            document.write("<tr> <td colspan='4' class='linhaVazia'></td></tr>");  
+            document.write("<tr> <td class='linhaVazia'>N° do Aluno</td> <td class='linhaVazia'>Média Final</td> <td class='linhaVazia'>Indicativo visual</td> <td class='linhaVazia'>Pontos para atingir a aprovação</td></tr>");
+            
+            var aprovacao, idVisual;
+            for (ii = 0; ii < 40; ii++)
+            {
+                aprovacao = (nota[ii]>=6) ? "---":(6-nota[ii]);
+
+                if((nota[ii]>=6)){
+                    idVisual = "positivo";
+                }
+                else {
+                    idVisual = "negativo";
+                }
+                
+                document.write("<tr><td>"+(ii+1)+"</td> <td>"+nota[ii]+"</td> <td class='"+idVisual+"'></td> <td>"+aprovacao+"</td></tr>");
+                
+            }
+           
+            </script>
+        </table>
+        
+    </body>
+</html>
